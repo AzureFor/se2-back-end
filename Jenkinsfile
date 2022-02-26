@@ -17,11 +17,11 @@ pipeline {
                 sh 'mvn test'
                 jacoco(execPattern: 'target/jacoco.exec')
             }
-            post {
+            /*post {
                 always {
                     junit 'target/surefire-reports/*.xml'
                 }
-            }
+            }*/
 
         }
         stage('Deploy') {
