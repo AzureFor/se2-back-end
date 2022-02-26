@@ -34,7 +34,7 @@ pipeline {
                     remote.password = 'Newbie666'
                     remote.allowAnyHosts = true
                     sshPut remote: remote, from: './target/courselearning-0.0.1.jar', into: '/root/back-end'
-                    sshCommand remote: remote, command: '/root/back-end/restart.sh'
+                    sshCommand remote: remote, command: '/root/back-end/start.sh'
                 }
             }
         }
