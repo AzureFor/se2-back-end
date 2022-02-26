@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.seecoder.courselearning.mapperservice.question.QuestionMapper">
+    <resultMap id="BaseResultMap" type="cn.seecoder.courselearning.po.question.Question">
+        <id column="question_id" jdbcType="INTEGER" property="questionId" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="correct_answer" jdbcType="VARCHAR" property="correctAnswer" />
+        <result column="explanation" jdbcType="VARCHAR" property="explanation" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from question
+        where question_id = #{question_id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="cn.seecoder.courselearning.po.question.Question" useGeneratedKeys="true" keyProperty="questionId">
+        insert into question (question_id, type,description,
+                              correct_answer, explanation)
+        values (#{questionId,jdbcType=INTEGER},  #{type,jdbcType=INTEGER},
+                #{description,jdbcType=VARCHAR}, #{correctAnswer,jdbcType=VARCHAR},
+                #{explanation,jdbcType=VARCHAR})
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select *
+        from question
+    </select>
+    <select id="selectByTid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select q.question_id,q.type,q.description,q.correct_answer,q.explanation
+        from question as q, test_question as tq
+        where tq.test_id=#{tid} and q.question_id=tq.question_id
+    </select>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.seecoder.courselearning.mapperservice.AnswerSheet.AnswerSheetMapper">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from answer_sheet
+        where uid = #{uid,jdbcType=INTEGER} and test_id = #{tid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="cn.seecoder.courselearning.po.testQuestion.TestQuestion" useGeneratedKeys="true" >
+        insert into answer_sheet (uid,test_id,question_id,score,student_answer)
+        values (#{uid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, #{qid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER},#{studentAnswer,jdbcType=VARCHAR})
+    </insert>
+    <select id="getScore" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select score
+        from answer_sheet
+        where uid=#{uid,jdbcType=INTEGER} and test_id=#{tid,jdbcType=INTEGER} and question_id=#{qid,jdbcType=INTEGER}
+    </select>
+    <select id="selectExist" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) as num
+        from answer_sheet
+        where uid = #{uid} and test_id = #{tid}
+    </select>
+    <select id="getStudentAnswer" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select student_answer
+        from answer_sheet
+        where uid=#{uid,jdbcType=INTEGER} and test_id=#{tid,jdbcType=INTEGER} and question_id=#{qid,jdbcType=INTEGER}
+    </select>
+</mapper>
