@@ -34,7 +34,7 @@ public class TestController {
     }
 
     @GetMapping("/test")
-    public List<TestVO> getTesT(){
+    public String getTesT(){
         return "HelloWorld";
     }
 
