@@ -33,5 +33,9 @@ public class TestController {
         return courseTestService.getTestByCourse(cid);
     }
 
+    GetMapping("/test")
+    public List<TestVO> getTesT(){
+        return "HelloWorld";
+    }
 
 }
