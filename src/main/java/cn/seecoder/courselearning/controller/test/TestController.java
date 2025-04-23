@@ -17,6 +17,12 @@ public class TestController {
     private TestService courseTestService;
 
 
+    
+    @GetMapping("/test")
+    public String getTesT(){
+        return "HelloWorld";
+    }
+
     /**
      * 教师创建测试
      * @param courseTest 测试VO
@@ -33,9 +39,5 @@ public class TestController {
         return courseTestService.getTestByCourse(cid);
     }
 
-    @GetMapping("/test")
-    public String getTesT(){
-        return "HelloWorld";
-    }
 
 }
